@@ -17,6 +17,8 @@
 
       'sources': [
         './render.cpp',
+        '../platform/default/default_styles.cpp',
+        '../platform/default/default_styles.hpp',
       ],
 
       'variables' : {

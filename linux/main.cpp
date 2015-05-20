@@ -68,12 +68,14 @@ int main(int argc, char *argv[]) {
     view = std::make_unique<GLFWView>();
 
     mbgl::SQLiteCache cache("/tmp/mbgl-cache.db");
-    mbgl::DefaultFileSource fileSource(&cache);
+    mbgl::DefaultFileSource fileSource(&cache, "/usr/share/mbgl");
 
     // Set access token if present
     const char *token = getenv("MAPBOX_ACCESS_TOKEN");
     if (token == nullptr) {
-        mbgl::Log::Warning(mbgl::Event::Setup, "no access token set. mapbox.com tiles won't work.");
+        // this token is for testing only and will be invalidated in case of misuse.
+        // contact the mapbox staff you have have any questions about it.
+        fileSource.setAccessToken("pk.eyJ1IjoidG1wc2FudG9zIiwiYSI6InoyQ0dVM0kifQ.8vT5qXkvyq0kVgdLjdGk-A");
     } else {
         fileSource.setAccessToken(std::string(token));
     }
@@ -94,7 +96,7 @@ int main(int argc, char *argv[]) {
         }
 
         const auto& newStyle = mbgl::util::defaultStyles[currentStyleIndex];
-        map.setStyleURL(newStyle.first);
+        map.setStyleURL(std::string("asset://") + newStyle.first);
         view->setWindowTitle(newStyle.second);
 
         mbgl::Log::Info(mbgl::Event::Setup, std::string("Changed style to: ") + newStyle.first);
@@ -103,7 +105,7 @@ int main(int argc, char *argv[]) {
     // Load style
     if (style.empty()) {
         const auto& newStyle = mbgl::util::defaultStyles.front();
-        style = newStyle.first;
+        style = std::string("asset://") + newStyle.first;
         view->setWindowTitle(newStyle.second);
     }
 

@@ -46,7 +46,7 @@ GLFWView::GLFWView(bool fullscreen_) : fullscreen(fullscreen_) {
     glfwWindowHint(GLFW_STENCIL_BITS, 8);
     glfwWindowHint(GLFW_DEPTH_BITS, 16);
 
-    window = glfwCreateWindow(width, height, "Mapbox GL", monitor, NULL);
+    window = glfwCreateWindow(width, height, "mbgl-app", monitor, NULL);
     if (!window) {
         glfwTerminate();
         mbgl::Log::Error(mbgl::Event::OpenGL, "failed to initialize window");
@@ -398,7 +398,10 @@ void GLFWView::setShouldClose() {
 }
 
 void GLFWView::setWindowTitle(const std::string& title) {
-    glfwSetWindowTitle(window, (std::string { "Mapbox GL: " } + title).c_str());
+    // This makes the Window Manager confused and icons to show incorrectly
+    // if the window title is not the same as the binary. This could be solved
+    // if we had a way of setting an icon on Linux using glfw.
+    glfwSetWindowTitle(window, (std::string { "mbgl-app: " } + title).c_str());
 }
 
 namespace mbgl {

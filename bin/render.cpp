@@ -9,6 +9,8 @@
 #include <mbgl/storage/default_file_source.hpp>
 #include <mbgl/storage/sqlite_cache.hpp>
 
+#include "../platform/default/default_styles.hpp"
+
 #pragma GCC diagnostic push
 #ifndef __clang__
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -42,7 +44,7 @@ int main(int argc, char *argv[]) {
 
     po::options_description desc("Allowed options");
     desc.add_options()
-        ("style,s", po::value(&style_path)->required()->value_name("json"), "Map stylesheet")
+        ("style,s", po::value(&style_path)->value_name("json")->default_value(std::string("/usr/share/mbgl/") + mbgl::util::defaultStyles[0].first), "Map stylesheet")
         ("lon,x", po::value(&lon)->value_name("degrees")->default_value(lon), "Longitude")
         ("lat,y", po::value(&lat)->value_name("degrees")->default_value(lat), "Latitude in degrees")
         ("zoom,z", po::value(&zoom)->value_name("number")->default_value(zoom), "Zoom level")
@@ -77,6 +79,10 @@ int main(int argc, char *argv[]) {
         const char *token_ptr = getenv("MAPBOX_ACCESS_TOKEN");
         if (token_ptr) {
             token = token_ptr;
+        } else {
+            // This token is for testing only and will be invalidated in case of misuse.
+            // Contact the Mapbox staff you have have any questions about it.
+            token = "pk.eyJ1IjoidG1wc2FudG9zIiwiYSI6IkhxRTdmaEEifQ.XplMjBNLomCUd3oTrIaQxw";
         }
     }
 

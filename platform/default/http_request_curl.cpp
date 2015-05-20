@@ -480,7 +480,7 @@ HTTPRequest::HTTPRequest(HTTPCURLContext* context_, const Resource& resource_, C
     handleError(curl_easy_setopt(handle, CURLOPT_SSLCERTTYPE, "PEM"));
     handleError(curl_easy_setopt(handle, CURLOPT_SSL_CTX_FUNCTION, sslctx_function));
 #else
-    handleError(curl_easy_setopt(handle, CURLOPT_CAINFO, "ca-bundle.crt"));
+    handleError(curl_easy_setopt(handle, CURLOPT_CAINFO, "/usr/share/mbgl/cert/ca-bundle.crt"));
 #endif
     handleError(curl_easy_setopt(handle, CURLOPT_FOLLOWLOCATION, 1));
     handleError(curl_easy_setopt(handle, CURLOPT_URL, resource.url.c_str()));

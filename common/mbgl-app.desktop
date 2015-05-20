@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=0.1
+Name=Mapbox GL App
+Comment=Renders Mapbox vector tiles
+Exec=/usr/bin/mbgl-app
+Icon=/usr/share/icons/mbgl-app/icon.png
+Terminal=false
+Type=Application
+Categories=Application;

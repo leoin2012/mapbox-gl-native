@@ -1,0 +1,3 @@
+build/linux/Release/mbgl-app usr/bin
+common/icon.png /usr/share/icons/mbgl-app
+common/mbgl-app.desktop /usr/share/applications

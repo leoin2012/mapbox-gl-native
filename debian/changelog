@@ -1,0 +1,556 @@
+mbgl (0.5.2-0) vivid; urgency=low
+
+  * fix cross-tile label collisions
+  * reduce collision box linewidth to 1
+  * fix line tessellation, fix #1814
+  * Add collision box debugging to the global debug toggle
+  * Remove unnecessary virtual methods from TileData
+  * Don't inherit for code reuse
+  * External synchronization for AnnotationManager
+  * Fixed round-tripping between pixelForLatLng() / latLngForPixel()
+  * Use unique_ptr for Source objects (fixes #904)
+  * Report errors when parsing raster tiles
+  * Add test fixtures for testing raster tiles
+  * Update the unit tests to check for raster tiles failures
+  * Use gdb to get backtraces
+  * Check for matching source when parsing tiles (fixes #1698)
+  * Fixed test run script
+  * Fixed crash on launch on iOS 7
+  * Update YCM to support OSX
+  * Add simple static method to retrieve the current loop
+  * Do not force uv_loop_t as the first parameter for a threaded object ctor
+  * run the Assert.Always test first by reordering the symbols
+  * Refactored -[MGLMapView direction]
+  * [wrap)
+  * Fixed compass overspinning
+  * Eliminated map overrotation on drift pan
+  * Moved raster zoom threshold to the .5’s
+  * mapbox/mapbox-gl-styles@6b0f8a9b10ad96c43ec1e0e72ab23a48bcda8c21
+  * bump podspec to 0.4.5
+  * [publish ios-v0.4.5]
+  * Make pixelRatio constant across a Map object lifetime
+  * improve round line joins for semi-transparent lines
+  * increase simplification for line annotations
+  * Sprite store API
+  * add RAII-style FixtureLog
+  * compress_png: void* => const void*
+  * ratio => pixelRatio
+  * add a separate SpriteParser object
+  * check for presence of Sprite creation warnings
+  * add test for trying to add mismatched SpriteImage
+  * add API for adding multiple sprites at once
+  * add missing headers
+  * use a 64 bit CRC value instead of std::hash
+  * disallow changing an existing Sprite's size
+  * move SpriteAtlas to the SpriteStore backend
+  * use SpriteStore from the SpriteAtlas
+  * we're no longer throwing exceptions when loading invalid sprite resources
+  * don't restrict pixelRatio in SpriteStore
+  * mark Image constructor as explicit to avoid accidental implicit argument conversion
+  * make sure that Sprite isn't marked as loaded until we actually added everything to the SpriteStore
+  * key sprites in sprite atlas by name and wrap value
+  * add ability to set custom sprites on the Map object
+  * replace Style object immediately
+  * add ability to add random custom markers to test app
+  * explicitly name the sprite that couldn't be changed
+  * fix sprite debug window code
+  * add basic SpriteAtlas test
+  * add test for fractional pixel ratios
+  * add image to odd pixelRatio atlas
+  * make sure that the SpriteStore object correctly replaces the SpriteImages
+  * test for sprite image that doesn't exist
+  * test SpriteAtlas updates when SpriteStore was updated
+  * move crc64() to test fixture
+  * show info message when Sprite does not exist
+  * add custom imagery visual test
+  * Cocoa custom marker imagery API
+  * stub annotation symbol cleanup
+  * nullability for MGLAnnotationImage
+  * fixes for runtime Cocoa imagery
+  * fix nullability
+  * explicitly bring in header
+  * runtime imagery based on annotation title
+  * remove logging
+  * clean up remainder of sprite removal for now
+  * split renderSync and transition nudging to allow client view syncing
+  * refs #1125, 1813: update user dot tracking in one place
+  * refs #1125, 1813: update user dot tracking in one place
+  * Make MockFileSource behave more like the real one
+  * Make FixtureLogObserver thread-safe
+  * Assert if -mapView:symbolNameForAnnotation: is implemented
+  * Removed documentation for unavailable method
+  * Assert if -mapView:symbolNameForAnnotation: is implemented
+  * Removed documentation for unavailable method
+  * Defer initialization until app enters foreground
+  * Defer initialization until app enters foreground
+  * bump podspec to 0.5.0-rc.1 w/ symbols
+  * [publish ios-v0.5.0-rc.1]
+  * test on Xcode 6.4 / iOS 8.4
+  * abbreviate syntax for unused parameters
+  * fixes #1858: proper shape placement in style layers
+  * refs #1859: use traditional struct declaration
+  * fixes #1858: proper shape placement in style layers
+  * refs #1859: use traditional struct declaration
+  * Revert "Defer initialization until app enters foreground"
+  * test on Xcode 6.4 / iOS 8.4
+  * bump podspec to 0.5.0rc2
+  * [publish ios-v0.5.0-rc.2]
+  * Updates to labels along lines
+  * bump podspec to 0.5.0 final (no symbols)
+  * [publish ios-v0.5.0]
+  * updated changelog for 0.5.0
+  * updated changelog for 0.5.0
+  * Merge Sprite loading notifications
+  * Report Sprite parsing errors to Observers
+  * Do not report isLoaded() if loading failed
+  * Re-enable Sprite resource loading tests
+  * update test-suite
+  * Add unit tests for the Sprite class
+  * Deffer updateAnnotationTiles() if Source is not available
+  * Move MockFileSource to fixtures
+  * Add unit tests for addPointAnnotations()
+  * Replaced release notes for 0.5.0
+  * Cherry-picked part of 987d961e5bd2a7b9a68c4f05dd8b599eb1357add to fix the build
+  * Force -ObjC in Mapbox GL pod
+  * Remove unused function: cwd()
+  * Remove unused variable
+  * Mark overrides
+  * Remove unused function: uv_zip_open()
+  * Remove unused function: elapsed()
+  * Make one arg ctors explicit
+  * Create GLKView before binding it and resuming
+  * Opt into Xcode 6.4
+  * Replaced release notes for 0.5.0
+  * Force -ObjC in Mapbox GL pod
+  * Fetch tags before relying on a list of them
+  * Fetch tags before relying on a list of them
+  * Opt into Xcode 6.4
+  * Updated changelog for 0.5.1
+  * Updated podspec for 0.5.1
+  * [publish ios-v0.5.1]
+  * Do not return a value on a "[]() -> void"
+  * Include iOS README in binary pod
+  * Re-enable the Satellite style on the Linux/OSX app
+  * Micro-optimizations to Style
+  * Unify time point for Mapcontext::update
+  * s/properties/propertyValues/
+  * Pass {Duration,TimePoint} by const ref if possible
+  * Unify default transition values in MapData
+  * Force style cascade in MapContext::loadStyleJSON
+  * Bumped podspec to 0.5.2 with symbols
+  * [publish ios-v0.5.2]
+  * Add an interface for invoking cancellable tasks on the RunLoop
+  * Introduce the WorkQueue
+  * Added unit tests for the WorkQueue
+  * Keep updating until all the tiles are State::parsed
+  * Make Glyph requests from the Map Thread
+  * Add GlyphStore unit tests
+  * Remove hacks because of Glyph requests could not be canceled
+
+ -- Thiago Marcos P. Santos <tmpsantos@tmpsantos.com.br>  Fri, 17 Jul 2015 12:36:39 +0300
+
+mbgl (0.4.4-0) vivid; urgency=low
+
+  * Fix result value from parseProperty when T = std::array<float, 2>
+  * Improve readibility for style parser results
+  * Cleaned up remaining bool function return values
+  * Transform needs only a single TransformState
+  * Remove MapData dependency from AnnotationManager
+  * Remove unused
+  * Introduce the ThreadContext
+  * Add unit tests for ThreadContext
+  * Use ThreadContext data for logging
+  * Make the FileSource available from the ThreadContext
+  * Introduce GLObjectStore
+  * Get rid of Environment et al.
+  * Be more strict on escaping at the test regex
+  * Reversed direction to be clockwise
+  * Add xcpretty dependency to README
+  * Fix typo which caused MGLMultiPoint to return longitude as latitude of bounds.
+  * Remove redundant didChangeAuthorizationStatus: in favor of didFailWithError:
+  * Reimplemented fit to bounds
+  * Fit to bounds with padding
+  * Test fit to bounds; added MGLCoordinateBounds functions
+  * Maintain rotation when fitting to bounds
+  * Implemented -setVisibleCoordinateBounds:
+  * remove unused renderAsync() function
+  * drive map rendering from main thread
+  * drive Android rendering from the main thread via invalidate() calls
+  * Inline updateTiles and recalculateStyle
+  * Move getMin/MaxZoom to TransformState
+  * Move Transform from MapData to Map
+  * currentState() ⇢ getState()
+  * Remove duration argument from View::notifyMapChange
+  * Send MapChangeRegionIsChanging notifications
+  * Don't send MapChangeRegionIsChanging on every render
+  * Avoid removing content size constraints
+  * bump podspec & move back to symbols version
+  * [publish ios-v0.4.1]
+  * Fit to coordinates
+  * Add YCM config file for VIM users
+  * Typo
+  * add assert_always() macro for release build assertions
+  * Update test suite
+  * Update test suite
+  * Use array of structs rather than parallel arrays for annotations
+  * Update test suite
+  * Check if the style was loaded before rendering
+  * bump podspec to 0.4.2
+  * [publish ios-v0.4.2]
+  * Eliminate MapData::get/setFullyLoaded
+  * Eliminate unnecessary NSNumber* wrapping
+  * Rationalize *RenderingMap notifications
+  * Go dormant before termination
+  * bump podspec to 0.4.3
+  * [publish ios-v0.4.3]
+  * show symbols at z0, fix #1279
+  * Cancel pending Style requests before making a new one
+  * Remove tracking mode reset from resetNorthAnimated
+  * fixes #1770: rename & expose compass, logo, and attribution
+  * Revert "Do not hold a reference to the Style at the [Live|Vector]TileData"
+  * Reduce number of arguments in Source::update pathway
+  * Make request and reparse pure virtual
+  * Introduce TileWorker
+  * Push TileMembers members down hierarchy
+  * Remove indirection
+  * Merge TileParser into TileWorker
+  * reset partialParse when starting a new parsing run
+  * Remove indirection
+  * Clean up bucket creation loop
+  * Move WorkerTask functionality into RunLoop core
+  * Add comment about a subtlety
+  * Single-purpose Worker functions
+  * Convert Worker tests to Thread tests
+  * Catch exceptions when parsing tile PBFs
+  * Rename workerData ⇢ tileWorker
+  * Don't pass Worker& around so much
+  * Fix name shadowing
+  * Simplify RunLoop
+  * Reapply style layer copy technique
+  * Remove unnecessary use of optional
+  * bump podspec to 0.4.4
+  * [publish ios-v0.4.4]
+
+ -- Thiago Marcos P. Santos <tmpsantos@tmpsantos.com.br>  Thu, 02 Jul 2015 11:01:39 +0300
+
+mbgl (0.4.0-1) vivid; urgency=low
+
+  * fix formatting
+  * allow constructing LatLng/LatLngBounds objects from TileIDs
+  * press 1 through 6 to add 10^(n-1) points in the current viewport
+  * fix text-letter-spacing render test by using float
+  * Audited headers for nullability
+  * use array of structs rather than parallel arrays for annotations
+  * update test suite to reenable symbol tests
+  * Namespaced reachability notification constant
+  * Restored nullability compatibility shim
+  * fix roundabout not closed #1450
+  * update README for debug info on test app
+  * Revert "use array of structs rather than parallel arrays for annotations"
+  * Reenable iOS tests, default hardware/iOS version only for now
+  * Add location tests for iOS
+  * squash of #1655: shape annotations support for core & iOS
+  * refs #1483: move to simple tagging scheme, but preserve platform in publish command
+  * bump podspec version
+  * [publish ios-v0.3.5]
+  * Report errors for renderStill() misuse using the callback
+  * Add tests for renderStill() misuse
+  * Corrected bundledStyleURLs doc comment
+  * Defer to MGLMultiPoint for overlayBounds implementation
+  * Audited shape annotation classes for nullability
+  * fixes #1650: default to no symbols for release builds, but build both
+  * Corrected bundledStyleURLs doc comment
+  * Defer to MGLMultiPoint for overlayBounds implementation
+  * Audited shape annotation classes for nullability
+  * fixes #1650: default to no symbols for release builds, but build both
+  * Lightweight generics
+  * manually handle GeoJSONVT for OS X
+  * Avoid null-change KVO notifications
+  * Support shape annotations on GLFWView
+  * Do not hold a reference to the Style at the [Live|Vector]TileData
+  * Change StyleBucket::source to indirect reference
+  * Don't abandon a null texture
+  * Fix an order-of-operations issue with tileLoadingCompleteCallback
+  * manually handle GeoJSONVT for OS X
+  * Avoid null-change KVO notifications
+  * bump podspec
+  * refs #1483: update Travis script for potential semver suffixes
+  * [publish ios-v0.4.0-rc.1]
+  * update podspec to use debug symbols build during testing
+  * Cleaned up #defines for BUFFER_OFFSET
+  * Support shape annotations on GLFWView
+  * Do not hold a reference to the Style at the [Live|Vector]TileData
+  * Change StyleBucket::source to indirect reference
+  * Don't abandon a null texture
+  * Fix an order-of-operations issue with tileLoadingCompleteCallback
+  * Remove cleanup call on the ResourceLoading test case
+  * Use a pipe() to synchronize the server initialization
+  * Replaced user-facing assertions with exceptions
+  * fix appledoc version parsing
+  * remove problematic screenshot URL from HTML docs
+  * propertly initialize the name
+  * fixes #1756: update changelog for 0.4.0
+  * slight changelog tweaks to avoid appledoc problems
+  * refs #1759: remove header docs for now-unavailable API
+  * another symbol fix for appledoc parsing
+  * update podspec (0.4.0 final, no symbols)
+  * fixes #1756: call out breaking changes
+  * [publish ios-v0.4.0]
+  * Check libuv version semver-ishly
+  * avoid release candidates in determining version
+  * Screenshot II: The Return of Screenshot
+  * Screenshot III: The Reducening
+  * Substitute lightweight generics macros in docset
+  * Adding extraneous settings files to gitignore
+  * Fix resource loading flaky test
+
+ -- Thiago Marcos P. Santos <tmpsantos@tmpsantos.com.br>  Tue, 23 Jun 2015 10:34:22 +0300
+
+mbgl (0.3.4-1) vivid; urgency=low
+
+  * remove in-shader label flipping
+  * port some of the text shaping changes
+  * split generating symbol quads from collision code
+  * start porting symbol bucket changes
+  * start porting CollisionTile and CollisionFeature
+  * port collision box debug rendering
+  * port the remained of CollisionTile
+  * port SymbolBucket::placeFeatures
+  * remove old collision and rotation range code
+  * don't add upside-down glyphs to buffers
+  * port bboxifyLabel from -js
+  * port getAnchors from -js
+  * port checkMaxAngle from -js
+  * port clipLines from -js
+  * remove old symbol collision types
+  * fix quad offsets by subtracting buffer
+  * remove tests for deleted rotation_range
+  * fix android and Release builds
+  * don't create infinitely many boxes for zero or negative height symbols
+  * fix bboxify where first box should be placed after anchor
+  * port line icon angle fix
+  * Prevent full-circle spin during animated rotation
+  * break out setup.sh from run.sh
+  * drop unnecessary mason PATH and MASON_DIR exports from setup.sh
+  * fix integer overflow in line_atlas
+  * fix division by zero conditions
+  * Ignore deactivate when no valid EGL display. Fixes #1435
+  * manage atlas textures with unique_ptrs
+  * Initialize the atomic_flag in the class definition
+  * pin to appledoc 2.2v963 for now until HEAD is better tested with our setup
+  * bring back $JOBS for ios packaging
+  * first cut of iOS beta-started changelog
+  * remove outdated build-related iOS README
+  * fixes #1503: add changelog w/ notes to appledoc index
+  * #1516 - Adding explicit checks for developer implementation of user Opt Out functionality
+  * Revert "Merge pull request #1429 from mapbox/travis-setup"
+  * Register default user defaults on class initialization
+  * Predicate MGLMapboxEvents initialization on user opt-out
+  * Objective-C method naming convention
+  * Refactored MGLMapboxEvents for better data management
+  * Resume iff Metrics is enabled
+  * Folded MGLMetricsLocationManager into MGLMapboxEvents
+  * More cleanup and sanitization
+  * Respond to opt-out setting change immediately
+  * Consolidated logic for pausing/resuming MGLMapboxEvents
+  * Set correct strata for background render
+  * Run correct after_failure script
+  * use boost_program_options from mason
+  * build render binary
+  * #1516 - Renaming setShowsOptOutInApp to setMapboxMetricsEnabledSettingShownInApp for app consistency.  Implementing wordsmith edits to NSAssert text.  Removing technical debt.
+  * Revert "Revert "Merge pull request #1429 from mapbox/travis-setup""
+  * source install.sh to export mason on PATH
+  * #1516 - Adding public setter method to MGLAccountManager.h.  Fixing example signal opt out in MBXAppDelegate.
+  * Corrected Settings.bundle assertion message
+  * Acknowledge the existence of other Mapbox GL classes
+  * iOS metrics tests
+  * update test app to use fake in-app settings
+  * Enable Metrics by default default default
+  * Cleaned up in-app opt-out property
+  * fix spacing, ordering, imports
+  * Remove currently unsupported styles from defaultStyles
+  * add header docs for new MGLAccountManager; reorg
+  * patch up test project
+  * fix dispatch-thread pattern  1. Always bail early if in IB.  2. Always run on main thread if not already.  3. THEN dispatch_once to create the static instance.
+  * compile OS X with --std=c++1y
+  * add mobile badge
+  * don't implicitly cast to bool since this will make comparisons fails
+  * add BinPack test
+  * Make the state attribute private
+  * Move the Collision object from TileParser to VectorTileData
+  * Stop processing SymbolBuckets at the first incomplete bucket
+  * allow passing --debug to view tile boundaries in mbgl-render
+  * abort rendering early when we don't need to
+  * Return nil for IB designables agent
+  * Remove unused
+  * Use uv::async
+  * Remove unnecessary use of shared_from_this()
+  * Don't do things that set -e in Travis's shell
+  * Grab access token and other app-wide data from Info.plist
+  * Set up MGLAccountManager without any prodding
+  * Fall back on MGLAccountManager access token
+  * update test suite and fail Travis when comparisons fail
+  * move result deployment to after_failure script
+  * Update test suite
+  * Remove unused GL feature flags
+  * Extensible GL extension support
+  * Ensure call-once semantics inside InitializeExtensions
+  * Obsoleted +setMapboxMetricsEnabledSettingShownInApp:
+  * Updated Metrics in-app opt-out assertion
+  * Fix misleading headless test output (fixes #1557)
+  * Rotate compass on device orientation changes
+  * mapID → styleID
+  * touch up README around CocoaPods
+  * Upload headless results in after_script
+  * Speculative fix for PNG alpha/gamma handling
+  * Restore sprite load check
+  * Always request the SymbolBucket dependencies at the first pass
+  * Add output of RepeatedRender test to .gitignore
+  * emplace into threadSet
+  * Make the MapContext object run on its own thread on the tests
+  * make sure bit shifts happen with unsigned integers
+  * Removed unneeded unique_ptr
+  * Render translucent background layers (fixes #1514)
+  * [publish ios-v0.3.1]
+  * use full raw screenshot for portability into API docs
+  * update changelog for 0.3.1
+  * Update Android to use new styles
+  * Revert "refs #1568: remove IBDesignable support for now"
+  * Properly fail to load the map
+  * Keep a pointer to GlyphStore on ResourceLoader
+  * Emit the signal on the MapThread
+  * Do not process partial tiles if no new resources have arrived
+  * Allow reparsing partial tiles when we have new tiles
+  * Only emit tile updated signals when the tile really changes
+  * Move mobile logo to internal repo
+  * Privatized MGLMapboxEvents
+  * Removed “private” header
+  * Remove clean from ipackage* dependencies
+  * Update token.txt location in README
+  * Add README instructions for running on Android emulator and devices
+  * #1396 - Refactoring Metrics Test Server URL configuration to be drive via Info.plist
+  *  #1396 - Backing out accidental commit from fa34b5396482faa66af0a38d24d724db026d722c
+  * Fix typos and add access token reminder
+  * Don't crash if VAO extensions are not available
+  * Marked unused parameters with __unused
+  * Less bland default title for user dot annotation
+  * fix Travis stage name
+  * don't mark the glyphs as parsed until we've actually parsed them
+  * extend the FontStack lock to returned values
+  * only return locked FontStack objects
+  * bump test suite
+  * port sprite atlas pollution fix
+  * Update test suite
+  * #1596 - Adding mapbox.com checking to http requests
+  * Compare hostname for adding events=true
+  * Cache account type user default
+  * Check account type before comparing hostname
+  * #1595 - Adding App User count event to be triggered and immediately sent when Access Token is set.
+  * Implementing suggestions to tighten up MGLAccountManager and rename MGLEventTypeUserCount to MGLEventTypeAppUserTurnstile
+  * #1595 - Adding exception so that Turnstile event will always be sent in
+  * Removed accessToken from MGLMapView public API
+  * Removed redundant declaration
+  * update README to mention desktop style toggling
+  * Observe access token changes
+  * #1595 - Improving stability by moving MGLEventTypeAppUserTurnstile after the strongSelf check
+  * #1595 - Moving MGLEventTypeAppUserTurnstile event to end of MGLMapboxEvents init method to ensure it only gets called once
+  * #1595 - Separating pushTurnstileEvent from primary pushEvent infrastructure.  Adding event, created, and appBundleId to posted Turnstile Event data model.
+  * #1595 - Changing to strongSelf
+  * redo placement when map rotates
+  * Update Android gradle plugin to 1.2.3
+  * place symbols with correct angle on initial load
+  * Fix swapped lat/lng
+  * Add action sheet shortcut to Settings.app metrics opt-out
+  * Fixed up various Info.plist edge cases
+  * Made accessToken uninspectable
+  * Update tests for access token changes
+  * Clarified IB designable message
+  * Rewrote IB designable message
+  * Removed unavailable method implementation
+  * Add iOS tests support for iPhone 6/6+ screen sizes
+  * Add iOS test project launch images for older devices, too
+  * Change LaunchScreen text to © because unicode is awesome
+  * Pulled self-less utility methods out into functions
+  * Android NDK r10e
+  * Add Thread tests; get argument transfer working for all cases
+  * Add callback for error notifications on renderStill()
+  * Notify failures when loading the source JSON
+  * Notify failures when loading the sprite JSON and image
+  * Notify failures when loading tiles
+  * Notify failures when loading glyphs
+  * Add MockFileSource and MockView for testing the ResourceLoader
+  * Add ResourceLoader unit tests
+  * split up glyph_store.cpp into multiple files
+  * Do not call abandon texture if there is no texture
+  * Add check for log messages on ResourceLoader tests
+  * update Reachability with latest version
+  * prefix Reachability with "MGL" to avoid linking conflicts and app store rejections
+  * DefaultFileSource has responsibility for handling mapbox:// URLs
+  * rename reachability on OS X as well
+  * Replace mbgl::util::make_unique<> with std::make_unique<>
+  * #1641 - Adding version and instance to Turnstile event and keeping them DRY for general events processing
+  * #1641 - Changing version to a static constant instead of a property
+  * bump podspec to 0.3.2
+  * [publish ios-v0.3.2]
+  * Return nil upon failure to initialize
+  * Defailablize init methods
+  * Notify sprite parsing errors
+  * Notify glyph parsing errors
+  * Notify tile parsing errors
+  * Add tests for handling corrupted data
+  * Linux build instruction updates [skip ci]
+  * added link with clang-3.5+ linux install
+  * Remove boost install instructions; now installed via mason
+  * #1659 - Adding tile stream certificate and ssl pin check for test server.
+  * make collision debug boxes toggleable
+  * Reparse tiles when zoom level > source maxzoom
+  * fix clipping lines for labeling
+  * fix shaped icon box sizes
+  * Adapt metrics tests to constant flush timer Disables three tests:
+  * Update mason to use soft float on Android ARM
+  * use floats when resampling lines to match -js
+  * Fixed ios-bench build
+  * Opt-in to Travis Xcode 6.3 beta
+  * Latest homebrew appledoc should be good
+  * Require appledoc v2.2-963 exactly
+  * #1659 - Converting usingTestServer to atomic property
+  * #1659 - Converting true to YES, false to NO to match Objective C standards
+  * Merge ResourceLoader into Style and move atlas ownership
+  * Remove unused; fix naming style
+  * wget -> curl since wget itself is a brew install
+  * appledoc download is a redirect
+  * .zip != .tgz
+  * sort overlapping symbols in the y direction
+  * fix assertion. only include glyphs with metrics
+  * re-add sprite atlas pollution fix
+  * update test suite
+  * use source zoom level for tile loading errors
+  * fix android compile errors
+  * Remove references to ResourceLoader
+  * Rebase the resource loading tests
+  * Do not call update() asynchronously on the test case
+  * fix hangs caused by redoPlacement
+  * point to better appledoc install method
+  * fix typo
+  * Adding iOS Testing Header To Draw Attention
+  * fix collision box clipping
+  * bump podspec to 0.3.3
+  * [publish ios-v0.3.3]
+  * Fix race condition on error notification
+  * Cleanup the MapContext before the util::Thread destructor
+  * Test Map object destruction with pending requests
+  * bump/correct styles pin
+  * bump podspec to 0.3.4
+  * [publish ios-v0.3.4]
+  * going back to b1 styles pin to avoid other complications for now
+  * [publish ios-v0.3.4]
+  * Remove unused overscaling variables
+  * Add documentation for TileData::State
+
+ -- Thiago Marcos P. Santos <tmpsantos@tmpsantos.com.br>  Sat, 06 Jun 2015 11:28:38 +0300
+
+mbgl (0.3.1-6) vivid; urgency=low
+
+  * Initial release.
+
+ -- Thiago Marcos P. Santos <tmpsantos@tmpsantos.com.br>  Wed, 20 May 2015 17:56:00 +0300

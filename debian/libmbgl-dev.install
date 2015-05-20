@@ -1,0 +1,4 @@
+#!/usr/bin/dh-exec
+include/mbgl usr/include
+build/linux/Release/obj.target/libmbgl.a usr/lib/${DEB_HOST_MULTIARCH}
+scripts/libmbgl.pc usr/lib/${DEB_HOST_MULTIARCH}/pkgconfig

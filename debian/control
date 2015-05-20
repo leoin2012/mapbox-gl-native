@@ -1,0 +1,105 @@
+Source: mbgl
+Section: libs
+Priority: optional
+Maintainer: Thiago Marcos P. Santos <tmpsantos@tmpsantos.com.br>
+Build-Depends: debhelper (>= 9),
+               dh-exec (>=0.3),
+               gyp,
+               pkg-config,
+               libboost-filesystem1.55-dev,
+               libboost-program-options1.55-dev,
+               libboost-system1.55-dev,
+               libcurl4-openssl-dev,
+               libgl1-mesa-dev,
+               libjpeg-turbo8-dev,
+               libsqlite3-dev,
+               libuv-dev,
+               libxcursor-dev,
+               libxi-dev,
+               libxinerama-dev,
+               libxrandr-dev,
+               libzip-dev,
+               zlib1g-dev
+Standards-Version: 3.9.6
+Homepage: https://github.com/mapbox/mapbox-gl-native
+Vcs-Browser: https://github.com/mapbox/mapbox-gl-native
+Vcs-Git: https://github.com/mapbox/mapbox-gl-native.git
+
+Package: libmbgl
+Section: libs
+Architecture: amd64
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
+Depends:
+ mbgl-assets,
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: C++ library that uses OpenGL for renderering Mapbox vector tiles
+ Mapbox GL is based on the same vector tile format that powers Mapbox Streets. This
+ means that you can use the Mapbox global basemap, fully or in part, as well as create
+ your own vector tiles to interleave data from different sources. 
+
+Package: libmbgl-dev
+Section: libdevel
+Architecture: amd64
+Multi-Arch: same
+Provides: libmbgl-dev
+Replaces: libmbgl-dev
+Conflicts: libmbgl-dev
+Depends:
+ ${misc:Depends},
+ libmbgl (= ${binary:Version}),
+Description: C++ library that uses OpenGL for renderering Mapbox vector tiles
+ Mapbox GL is based on the same vector tile format that powers Mapbox Streets. This
+ means that you can use the Mapbox global basemap, fully or in part, as well as create
+ your own vector tiles to interleave data from different sources. 
+ .
+ This package contains the development files.
+
+Package: libmbgl-dbg
+Section: debug
+Priority: extra
+Architecture: amd64
+Multi-Arch: same
+Depends:
+ ${misc:Depends},
+ libmbgl (= ${binary:Version}),
+ libmbgl-dev (= ${binary:Version}),
+ mbgl-app (= ${binary:Version}),
+ mbgl-render (= ${binary:Version}),
+Description: C++ library that uses OpenGL for renderering Mapbox vector tiles
+ Mapbox GL is based on the same vector tile format that powers Mapbox Streets. This
+ means that you can use the Mapbox global basemap, fully or in part, as well as create
+ your own vector tiles to interleave data from different sources. 
+ .
+ This package contains the debugging symbols.
+
+Package: mbgl-assets
+Section: utils
+Architecture: all
+Description: Default styles for Mapbox GL and certificates
+ A few different styles for rendering the Mapbox vector tiles using
+ Mapbox GL. Also SSL certificates for secure connections.
+
+Package: mbgl-render
+Section: utils
+Architecture: amd64
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: command line tool for rendering maps using Mapbox GL
+ This tool allows you to render a Mapbox Vector Tile using a style and
+ output the result as an image.
+
+Package: mbgl-app
+Section: graphics
+Architecture: amd64
+Depends:
+ xdg-utils,
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: browser for Mapbox vector tiles rendered using the Mapbox GL
+ This application provides a simple viewport for Mapbox vector tiles
+ and allows you to switch between styles.
+ .
+ mbgl-app is intended as a test program for the Mapbox GL library.

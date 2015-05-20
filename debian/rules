@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+include /usr/share/dpkg/default.mk
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export SOVER=0.5.2
+export SONAME=libmbgl.so.$(SOVER)
+
+%:
+	dh $@ --parallel
+
+override_dh_auto_configure:
+	true
+
+override_dh_auto_test:
+	true
+
+override_dh_strip:
+	dh_strip --dbg-package=libmbgl-dbg
+	sed -i s/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/ debian/libmbgl-dev/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig/libmbgl.pc
+	sed -i s/@DEB_VERSION_UPSTREAM@/$(DEB_VERSION_UPSTREAM)/ debian/libmbgl-dev/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig/libmbgl.pc
+
+override_dh_auto_build:
+	dh_auto_build -- render
+	dh_auto_build -- linux

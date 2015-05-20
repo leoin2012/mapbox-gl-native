@@ -1,0 +1,2 @@
+common/ca-bundle.crt usr/share/mbgl/cert
+styles/styles usr/share/mbgl

@@ -8,6 +8,7 @@
 
 #include <cassert>
 #include <cstdlib>
+#include <unistd.h>
 
 void glfwError(int error, const char *description) {
     mbgl::Log::Error(mbgl::Event::OpenGL, "GLFW error (%i): %s", error, description);
@@ -121,9 +122,28 @@ void GLFWView::onKey(GLFWwindow *window, int key, int /*scancode*/, int action, 
         case GLFW_KEY_Q:
             view->clearAnnotations();
             break;
-        case GLFW_KEY_P: {
+        case GLFW_KEY_P:
             view->addRandomCustomPointAnnotations(1);
-        } break;
+            break;
+        case GLFW_KEY_F1:
+            if (fork() == 0) {
+                execlp("xdg-open", "xdg-open", "https://www.mapbox.com/about/maps/", NULL);
+                exit(0);
+            }
+            break;
+        case GLFW_KEY_F2:
+            const mbgl::LatLng latLng = view->map->getLatLng();
+            const char* feedbackUrl = "https://www.mapbox.com/map-feedback/#mapbox.streets";
+
+            char xdgUrl[500];
+            snprintf(xdgUrl, sizeof(xdgUrl), "%s/%f/%f/%d",
+                feedbackUrl, latLng.longitude, latLng.latitude, int(view->map->getZoom()) + 1);
+
+            if (fork() == 0) {
+                execlp("xdg-open", "xdg-open", xdgUrl, NULL);
+                exit(0);
+            }
+            break;
         }
     }
 
@@ -401,7 +421,8 @@ void GLFWView::setWindowTitle(const std::string& title) {
     // This makes the Window Manager confused and icons to show incorrectly
     // if the window title is not the same as the binary. This could be solved
     // if we had a way of setting an icon on Linux using glfw.
-    glfwSetWindowTitle(window, (std::string { "mbgl-app: " } + title).c_str());
+    glfwSetWindowTitle(window, (std::string { "mbgl-app: " } + title +
+        std::string { " | F1: © Mapbox © OpenStreetMap | F2: Improve this map" }).c_str());
 }
 
 namespace mbgl {

@@ -24,4 +24,32 @@
 
     ['install_prefix != ""', { 'includes': ['./gyp/install.gypi' ] } ],
   ],
+  'targets': [
+    { 'target_name': 'mbgl_static',
+      'type': 'static_library',
+      'product_name': 'mbgl',
+      'dependencies': [
+        'core',
+        'asset-<(asset_lib)',
+        'cache-<(cache_lib)',
+        'headless-<(headless_lib)',
+        'http-<(http_lib)',
+        'platform-<(platform_lib)',
+        'copy_styles',
+        'copy_certificate_bundle',
+      ],
+    },
+    { 'target_name': 'mbgl',
+      'type': 'shared_library',
+      'dependencies': [
+        'mbgl_static',
+      ],
+      'product_extension': 'so.<@(sover)',
+      'direct_dependent_settings': {
+        'include_dirs': [
+          'include',
+        ],
+      },
+    },
+  ],
 }

@@ -8,13 +8,7 @@
       'type': 'executable',
 
       'dependencies': [
-        '../mbgl.gyp:core',
-        '../mbgl.gyp:platform-<(platform_lib)',
-        '../mbgl.gyp:headless-<(headless_lib)',
-        '../mbgl.gyp:http-<(http_lib)',
-        '../mbgl.gyp:asset-<(asset_lib)',
-        '../mbgl.gyp:cache-<(cache_lib)',
-        '../mbgl.gyp:copy_certificate_bundle',
+        '../mbgl.gyp:mbgl',
       ],
 
       'include_dirs': [

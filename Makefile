@@ -160,7 +160,7 @@ linux: Makefile/project
 	$(MAKE) -C build/$(HOST) BUILDTYPE=$(BUILDTYPE) linuxapp
 
 run-linux: linux
-	(cd build/$(HOST)/$(BUILDTYPE) && ./mapbox-gl)
+	(cd build/$(HOST)/$(BUILDTYPE) && ./mbgl-app)
 
 run-valgrind-linux: linux
 	(cd build/$(HOST)/$(BUILDTYPE) && valgrind --leak-check=full --suppressions=$(BUILD_ROOT)/scripts/valgrind.sup ./mapbox-gl)
@@ -171,7 +171,7 @@ xlinux: Xcode/project
 	xcodebuild -project ./build/osx/gyp/osx.xcodeproj -configuration $(BUILDTYPE) -target linuxapp -jobs $(JOBS) $(XCPRETTY)
 
 run-xlinux: xlinux
-	"gyp/build/$(BUILDTYPE)/mapbox-gl"
+	"gyp/build/$(BUILDTYPE)/mbgl-app"
 
 
 #### Android libaries #########################################################

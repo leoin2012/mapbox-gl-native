@@ -174,6 +174,10 @@ if [ ! -z ${LIBZIP_VERSION} ]; then
     CONFIG+="    'zip_ldflags%': $(quote_flags $(pkg-config --libs-only-L --libs-only-other libzip)),"$LN
 fi
 
+if [ ! -z ${SOVER} ]; then
+    CONFIG+="    'sover%': $(quote_flags $SOVER),"$LN
+fi
+
 CONFIG+="  }
 }
 "

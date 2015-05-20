@@ -4,17 +4,11 @@
   ],
   'targets': [
     { 'target_name': 'linuxapp',
-      'product_name': 'mapbox-gl',
+      'product_name': 'mbgl-app',
       'type': 'executable',
 
       'dependencies': [
-        '../mbgl.gyp:core',
-        '../mbgl.gyp:platform-<(platform_lib)',
-        '../mbgl.gyp:http-<(http_lib)',
-        '../mbgl.gyp:asset-<(asset_lib)',
-        '../mbgl.gyp:cache-<(cache_lib)',
-        '../mbgl.gyp:copy_styles',
-        '../mbgl.gyp:copy_certificate_bundle',
+        '../mbgl.gyp:mbgl',
       ],
 
       'sources': [

@@ -235,8 +235,6 @@ endif
 clear_sqlite_cache:
 ifeq ($(PLATFORM), osx)
 	rm -f ~/Library/Application\ Support/Mapbox\ GL/cache.db
-else
-	rm -f /tmp/mbgl-cache.db
 endif
 
 clean: clear_sqlite_cache clear_xcode_cache
@@ -252,4 +250,3 @@ clean: clear_sqlite_cache clear_xcode_cache
 	-rm -f ./android/test/features.zip
 
 distclean: clean
-	-rm -rf ./mason_packages

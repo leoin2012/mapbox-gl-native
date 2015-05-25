@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${prefix}/lib/@DEB_HOST_MULTIARCH@
+includedir=${prefix}/include
+
+Name: libmbgl
+Description: Development libraries for libmbgl
+Version: @DEB_VERSION_UPSTREAM@
+Libs: -L${libdir} -lmbgl
+Cflags:
+URL: https://github.com/mapbox/mapbox-gl-native

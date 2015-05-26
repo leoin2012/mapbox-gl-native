@@ -1,0 +1,11 @@
+prefix=CURRENT_PATH
+exec_prefix=CURRENT_PATH
+libdir=${exec_prefix}/lib
+includedir=${prefix}/mason_packages/linux-x86_64/libpng/1.6.16/include/libpng16
+
+Name: libpng
+Description: Loads and saves PNG files
+Version: 1.6.16
+Libs: -L${libdir} -lpng16
+Libs.private: -lm -lz -lm 
+Cflags: -I${includedir}

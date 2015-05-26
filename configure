@@ -116,9 +116,9 @@ fi
 
 if [ ! -z ${GLFW_VERSION} ]; then
     mason install glfw ${GLFW_VERSION}
-    CONFIG+="    'glfw3_static_libs%': $(quote_flags $(mason static_libs glfw ${GLFW_VERSION})),"$LN
-    CONFIG+="    'glfw3_cflags%': $(quote_flags $(mason cflags glfw ${GLFW_VERSION})),"$LN
-    CONFIG+="    'glfw3_ldflags%': $(quote_flags $(mason ldflags glfw ${GLFW_VERSION})),"$LN
+    CONFIG+="    'glfw3_static_libs%': $(quote_flags $(mason static_libs glfw ${GLFW_VERSION} | sed s,CURRENT_PATH,$PWD,g)),"$LN
+    CONFIG+="    'glfw3_cflags%': $(quote_flags $(mason cflags glfw ${GLFW_VERSION} | sed s,CURRENT_PATH,$PWD,g)),"$LN
+    CONFIG+="    'glfw3_ldflags%': $(quote_flags $(mason ldflags glfw ${GLFW_VERSION} | sed s,CURRENT_PATH,$PWD,g)),"$LN
 fi
 
 if [ ${MASON_PLATFORM} == 'linux' ]; then
@@ -131,9 +131,9 @@ fi
 
 if [ ! -z ${LIBPNG_VERSION} ]; then
     mason install libpng ${LIBPNG_VERSION}
-    CONFIG+="    'png_static_libs%': $(quote_flags $(mason static_libs libpng ${LIBPNG_VERSION})),"$LN
-    CONFIG+="    'png_cflags%': $(quote_flags $(mason cflags libpng ${LIBPNG_VERSION})),"$LN
-    CONFIG+="    'png_ldflags%': $(quote_flags $(mason ldflags libpng ${LIBPNG_VERSION})),"$LN
+    CONFIG+="    'png_static_libs%': $(quote_flags $(mason static_libs libpng ${LIBPNG_VERSION} | sed s,CURRENT_PATH,$PWD,g)),"$LN
+    CONFIG+="    'png_cflags%': $(quote_flags $(mason cflags libpng ${LIBPNG_VERSION} | sed s,CURRENT_PATH,$PWD,g)),"$LN
+    CONFIG+="    'png_ldflags%': $(quote_flags $(mason ldflags libpng ${LIBPNG_VERSION} | sed s,CURRENT_PATH,$PWD,g)),"$LN
 fi
 
 if [ ! -z ${LIBJPEG_VERSION} ]; then

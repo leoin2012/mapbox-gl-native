@@ -30,20 +30,20 @@ config/%.gypi: configure
 	@$(ENV_$*) ./scripts/flock.py build/Configure.lock ./configure config/$*.gypi
 
 styles/styles:
-	git submodule update --init styles
+	true
 
 ifeq ($(shell uname -s), Darwin)
 SMCalloutView:
-	git submodule update --init platform/ios/vendor/SMCalloutView
+	true
 else
 SMCalloutView:
 endif
 
 geojsonvt:
-	git submodule update --init src/mbgl/util/geojsonvt
+	true
 
 KIF:
-	git submodule update --init test/ios/KIF
+	true
 
 
 #### Build files ###############################################################

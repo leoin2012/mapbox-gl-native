@@ -16,10 +16,12 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wshadow"
 #endif
+#include <boost/filesystem.hpp>
 #include <boost/program_options.hpp>
 #pragma GCC diagnostic pop
 
 namespace po = boost::program_options;
+namespace fs = boost::filesystem;
 
 #include <uv.h>
 
@@ -37,7 +39,15 @@ int main(int argc, char *argv[]) {
     int height = 512;
     double pixelRatio = 1.0;
     static std::string output = "out.png";
-    std::string cache_file = "cache.sqlite";
+    std::string cacheFile("mbgl-cache.db");
+
+    const char *homeDirectory = getenv("HOME");
+    if (homeDirectory) {
+        std::string cacheDirectory = std::string(homeDirectory) + "/.cache/mbgl-render/";
+        fs::create_directories(cacheDirectory);
+        cacheFile.insert(0, cacheDirectory);
+    }
+
     std::vector<std::string> classes;
     std::string token;
     bool debug = false;
@@ -55,7 +65,7 @@ int main(int argc, char *argv[]) {
         ("token,t", po::value(&token)->value_name("key")->default_value(token), "Mapbox access token")
         ("debug", po::bool_switch(&debug)->default_value(debug), "Debug mode")
         ("output,o", po::value(&output)->value_name("file")->default_value(output), "Output file name")
-        ("cache,d", po::value(&cache_file)->value_name("file")->default_value(cache_file), "Cache database file name")
+        ("cache,d", po::value(&cacheFile)->value_name("file")->default_value(cacheFile), "Cache database file name")
     ;
 
     try {
@@ -71,7 +81,7 @@ int main(int argc, char *argv[]) {
 
     using namespace mbgl;
 
-    mbgl::SQLiteCache cache(cache_file);
+    mbgl::SQLiteCache cache(cacheFile);
     mbgl::DefaultFileSource fileSource(&cache);
 
     // Try to load the token from the environment.

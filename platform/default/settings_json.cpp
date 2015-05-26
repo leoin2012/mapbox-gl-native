@@ -3,10 +3,26 @@
 
 using namespace mbgl;
 
+namespace {
+
+std::string getSettingsPath() {
+    std::string settingsFile("mbgl-native.cfg");
+
+    const char *homeDirectory = getenv("HOME");
+    if (homeDirectory) {
+        settingsFile.insert(0, "/.config/mbgl-app/");
+        settingsFile.insert(0, homeDirectory);
+    }
+
+    return settingsFile;
+}
+
+}
+
 Settings_JSON::Settings_JSON() { load(); }
 
 void Settings_JSON::load() {
-    std::ifstream file("/tmp/mbgl-native.cfg");
+    std::ifstream file(getSettingsPath());
     if (file) {
         file >> longitude;
         file >> latitude;
@@ -17,7 +33,7 @@ void Settings_JSON::load() {
 }
 
 void Settings_JSON::save() {
-    std::ofstream file("/tmp/mbgl-native.cfg");
+    std::ofstream file(getSettingsPath());
     if (file) {
         file << longitude << std::endl;
         file << latitude << std::endl;

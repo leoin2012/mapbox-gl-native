@@ -30,6 +30,8 @@
         ],
         'libraries': [
           '<@(glfw3_static_libs)',
+          '-lboost_filesystem',
+          '-lboost_system'
         ],
       },
 

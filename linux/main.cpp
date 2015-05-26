@@ -13,6 +13,16 @@
 #include <fstream>
 #include <sstream>
 
+#pragma GCC diagnostic push
+#ifndef __clang__
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wshadow"
+#endif
+#include <boost/filesystem.hpp>
+#pragma GCC diagnostic pop
+
+namespace fs = boost::filesystem;
+
 namespace {
 
 std::unique_ptr<GLFWView> view;
@@ -67,7 +77,20 @@ int main(int argc, char *argv[]) {
 
     view = std::make_unique<GLFWView>();
 
-    mbgl::SQLiteCache cache("/tmp/mbgl-cache.db");
+    std::string cacheFile("mbgl-cache.db");
+
+    const char *homeDirectory = getenv("HOME");
+    if (homeDirectory) {
+        std::string configDirectory = std::string(homeDirectory) + "/.config/mbgl-app/";
+        fs::create_directories(configDirectory);
+
+        std::string cacheDirectory = std::string(homeDirectory) + "/.cache/mbgl-app/";
+        fs::create_directories(cacheDirectory);
+
+        cacheFile.insert(0, cacheDirectory);
+    }
+
+    mbgl::SQLiteCache cache(cacheFile);
     mbgl::DefaultFileSource fileSource(&cache, "/usr/share/mbgl");
 
     // Set access token if present

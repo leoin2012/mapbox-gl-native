@@ -34,7 +34,9 @@
         'libraries': [
           '<@(glfw3_static_libs)',
           '<@(uv_static_libs)',
-          '<@(boost_program_options_static_libs)'
+          '<@(boost_program_options_static_libs)',
+          '-lboost_filesystem',
+          '-lboost_system'
         ],
       },
 

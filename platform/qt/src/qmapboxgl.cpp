@@ -731,10 +731,14 @@ void QMapboxGL::connectionEstablished()
 QMapboxGLPrivate::QMapboxGLPrivate(QMapboxGL *q, const QMapboxGLSettings &settings)
     : QObject(q)
     , q_ptr(q)
+#ifdef QT_OFFLINE
     , fileSourceObj(std::make_unique<mbgl::DefaultFileSource>(
         settings.cacheDatabasePath().toStdString(),
         settings.assetPath().toStdString(),
         settings.cacheDatabaseMaximumSize()))
+#else
+    , fileSourceObj(std::make_unique<mbgl::OnlineFileSource>())
+#endif
     , mapObj(std::make_unique<mbgl::Map>(
         *this, *fileSourceObj,
         static_cast<mbgl::MapMode>(settings.mapMode()),

@@ -6,7 +6,7 @@ find_package(Qt5OpenGL   REQUIRED)
 find_package(Qt5Quick    REQUIRED)
 find_package(Qt5Widgets  REQUIRED)
 
-QT5_ADD_RESOURCES(MBGL_QT_FILES platform/qt/qmapbox.qrc)
+QT5_ADD_RESOURCES(MBGL_QT_FILES ${CMAKE_SOURCE_DIR}/platform/qt/qmapbox.qrc)
 
 set(MBGL_QT_LIBRARIES
     PRIVATE Qt5::Core
@@ -16,12 +16,12 @@ set(MBGL_QT_LIBRARIES
 )
 
 add_library(qmapboxgl SHARED
-    platform/qt/include/qquickmapboxgl.hpp
-    platform/qt/include/qquickmapboxglstyleproperty.hpp
-    platform/qt/src/qquickmapboxgl.cpp
-    platform/qt/src/qquickmapboxglrenderer.cpp
-    platform/qt/src/qquickmapboxglrenderer.hpp
-    platform/qt/src/qquickmapboxglstyleproperty.cpp
+    ${CMAKE_SOURCE_DIR}/platform/qt/include/qquickmapboxgl.hpp
+    ${CMAKE_SOURCE_DIR}/platform/qt/include/qquickmapboxglstyleproperty.hpp
+    ${CMAKE_SOURCE_DIR}/platform/qt/src/qquickmapboxgl.cpp
+    ${CMAKE_SOURCE_DIR}/platform/qt/src/qquickmapboxglrenderer.cpp
+    ${CMAKE_SOURCE_DIR}/platform/qt/src/qquickmapboxglrenderer.hpp
+    ${CMAKE_SOURCE_DIR}/platform/qt/src/qquickmapboxglstyleproperty.cpp
 )
 
 target_link_libraries(qmapboxgl
@@ -41,8 +41,8 @@ target_link_libraries(mbgl-qt
 
 # QtQuick app
 add_executable(mbgl-qt-qml
-    platform/qt/qmlapp/main.cpp
-    platform/qt/qmlapp/qml.qrc
+    ${CMAKE_SOURCE_DIR}/platform/qt/qmlapp/main.cpp
+    ${CMAKE_SOURCE_DIR}/platform/qt/qmlapp/qml.qrc
 )
 
 target_link_libraries(mbgl-qt-qml

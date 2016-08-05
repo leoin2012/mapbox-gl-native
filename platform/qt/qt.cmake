@@ -21,10 +21,6 @@ set(MBGL_QT_FILES
     PRIVATE platform/default/log_stderr.cpp
     PRIVATE platform/qt/src/thread_local.cpp
 
-    # Headless headless_view_cgl
-    PRIVATE platform/default/headless_display.cpp
-    PRIVATE platform/default/headless_view.cpp
-
     # Platform integration
     PRIVATE platform/qt/src/async_task.cpp
     PRIVATE platform/qt/src/async_task_impl.hpp
@@ -81,20 +77,29 @@ endif()
 # OS specific configurations
 if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
     list(APPEND MBGL_QT_FILES
-        PRIVATE platform/darwin/src/nsthread.mm
         PRIVATE platform/darwin/src/headless_view_cgl.cpp
+        PRIVATE platform/darwin/src/nsthread.mm
+        PRIVATE platform/default/headless_display.cpp
+        PRIVATE platform/default/headless_view.cpp
+
     )
     list(APPEND MBGL_QT_LIBRARIES
         PRIVATE "-framework Foundation"
         PRIVATE "-framework OpenGL"
     )
-else()
+elseif (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
     list(APPEND MBGL_QT_FILES
-        PRIVATE platform/default/thread.cpp
+        PRIVATE platform/default/headless_display.cpp
+        PRIVATE platform/default/headless_view.cpp
         PRIVATE platform/default/headless_view_glx.cpp
+        PRIVATE platform/default/thread.cpp
     )
     list(APPEND MBGL_QT_LIBRARIES
         PRIVATE -lGL
         PRIVATE -lX11
+    )
+elseif (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+    list(APPEND MBGL_QT_FILES
+        PRIVATE platform/qt/src/thread.cpp
     )
 endif()

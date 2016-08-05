@@ -146,10 +146,10 @@ constexpr bool operator!=(const StencilOp::Type& a, const StencilOp::Type& b) {
 }
 
 struct DepthRange {
-    struct Type { GLfloat near, far; };
+    struct Type { GLfloat nearVal, farVal; };
     static const Type Default;
     static void Set(const Type& value) {
-        MBGL_CHECK_ERROR(glDepthRange(value.near, value.far));
+        MBGL_CHECK_ERROR(glDepthRange(value.nearVal, value.farVal));
     }
     static Type Get() {
         GLfloat floats[2];
@@ -159,7 +159,7 @@ struct DepthRange {
 };
 
 constexpr bool operator!=(const DepthRange::Type& a, const DepthRange::Type& b) {
-    return a.near != b.near || a.far != b.far;
+    return a.nearVal != b.nearVal || a.farVal != b.farVal;
 }
 
 struct DepthTest {

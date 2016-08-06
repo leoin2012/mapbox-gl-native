@@ -78,7 +78,7 @@ public:
 
     UniqueVAO createVAO() {
         GLuint id = 0;
-        MBGL_CHECK_ERROR(gl::GenVertexArrays(1, &id));
+        gl::GenVertexArrays(1, &id);
         return UniqueVAO { std::move(id), { this } };
     }
 

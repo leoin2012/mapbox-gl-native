@@ -7,7 +7,7 @@ namespace mbgl {
 
 void VertexArrayObject::Unbind() {
     if (!gl::BindVertexArray) return;
-    MBGL_CHECK_ERROR(gl::BindVertexArray(0));
+    gl::BindVertexArray(0);
 }
 
 VertexArrayObject::VertexArrayObject() {
@@ -28,7 +28,7 @@ void VertexArrayObject::bindVertexArrayObject(gl::ObjectStore& store) {
     if (!vao) {
         vao = store.createVAO();
     }
-    MBGL_CHECK_ERROR(gl::BindVertexArray(*vao));
+    gl::BindVertexArray(*vao);
 }
 
 void VertexArrayObject::verifyBinding(Shader& shader, GLuint vertexBuffer, GLuint elementsBuffer,

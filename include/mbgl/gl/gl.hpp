@@ -24,13 +24,12 @@
     #else
         #error Unsupported Apple platform
     #endif
-#elif __ANDROID__ || MBGL_USE_GLES2
+#elif __ANDROID__
     #define GL_GLEXT_PROTOTYPES
     #include <GLES2/gl2.h>
     #include <GLES2/gl2ext.h>
 #elif __QT__
-    #define GL_GLEXT_PROTOTYPES
-    #include <QtOpenGL>
+    #include <QOpenGLFunctions>
 #else
     #define GL_GLEXT_PROTOTYPES
     #include <GL/gl.h>
@@ -69,11 +68,7 @@ struct Error : ::std::runtime_error {
 
 void checkError(const char *cmd, const char *file, int line);
 
-#ifndef NDEBUG
-#define MBGL_CHECK_ERROR(cmd) ([&]() { struct __MBGL_C_E { ~__MBGL_C_E() { ::mbgl::gl::checkError(#cmd, __FILE__, __LINE__); } } __MBGL_C_E; return cmd; }())
-#else
-#define MBGL_CHECK_ERROR(cmd) (cmd)
-#endif
+#define MBGL_CHECK_ERROR(cmd) QOpenGLContext::currentContext()->functions()->cmd
 
 class ExtensionFunctionBase {
 public:

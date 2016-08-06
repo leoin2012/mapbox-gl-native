@@ -117,11 +117,11 @@ struct StencilTest {
     using Type = bool;
     static const Type Default;
     static void Set(const Type& value) {
-        MBGL_CHECK_ERROR(value ? glEnable(GL_STENCIL_TEST) : glDisable(GL_STENCIL_TEST));
+        value ? MBGL_CHECK_ERROR(glEnable(GL_STENCIL_TEST)) : MBGL_CHECK_ERROR(glDisable(GL_STENCIL_TEST));
     }
     static Type Get() {
         Type stencilTest;
-        MBGL_CHECK_ERROR(stencilTest = glIsEnabled(GL_STENCIL_TEST));
+        stencilTest = MBGL_CHECK_ERROR(glIsEnabled(GL_STENCIL_TEST));
         return stencilTest;
     }
 };
@@ -166,11 +166,11 @@ struct DepthTest {
     using Type = bool;
     static const Type Default;
     static void Set(const Type& value) {
-        MBGL_CHECK_ERROR(value ? glEnable(GL_DEPTH_TEST) : glDisable(GL_DEPTH_TEST));
+        value ? MBGL_CHECK_ERROR(glEnable(GL_DEPTH_TEST)) : MBGL_CHECK_ERROR(glDisable(GL_DEPTH_TEST));
     }
     static Type Get() {
         Type depthTest;
-        MBGL_CHECK_ERROR(depthTest = glIsEnabled(GL_DEPTH_TEST));
+        depthTest = MBGL_CHECK_ERROR(glIsEnabled(GL_DEPTH_TEST));
         return depthTest;
     }
 };
@@ -192,11 +192,11 @@ struct Blend {
     using Type = bool;
     static const Type Default;
     static void Set(const Type& value) {
-        MBGL_CHECK_ERROR(value ? glEnable(GL_BLEND) : glDisable(GL_BLEND));
+        value ? MBGL_CHECK_ERROR(glEnable(GL_BLEND)) : MBGL_CHECK_ERROR(glDisable(GL_BLEND));
     }
     static Type Get() {
         Type blend;
-        MBGL_CHECK_ERROR(blend = glIsEnabled(GL_BLEND));
+        blend = MBGL_CHECK_ERROR(glIsEnabled(GL_BLEND));
         return blend;
     }
 };

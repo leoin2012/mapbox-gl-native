@@ -9,6 +9,7 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+    QCoreApplication::setAttribute(Qt::AA_UseOpenGLES);
 
 #if QT_VERSION >= 0x050300
     app.setWindowIcon(QIcon(":icon.png"));

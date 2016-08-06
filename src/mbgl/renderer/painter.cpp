@@ -208,7 +208,7 @@ void Painter::render(const Style& style, const FrameData& frame_, SpriteAtlas& a
         config.activeTexture = 0;
         config.texture[0] = 0;
 
-        MBGL_CHECK_ERROR(VertexArrayObject::Unbind());
+        VertexArrayObject::Unbind();
     }
 
     if (frame.contextMode == GLContextMode::Shared) {

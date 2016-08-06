@@ -89,9 +89,6 @@ if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
     )
 elseif (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
     list(APPEND MBGL_QT_FILES
-        PRIVATE ${CMAKE_SOURCE_DIR}/platform/default/headless_display.cpp
-        PRIVATE ${CMAKE_SOURCE_DIR}/platform/default/headless_view.cpp
-        PRIVATE ${CMAKE_SOURCE_DIR}/platform/default/headless_view_glx.cpp
         PRIVATE ${CMAKE_SOURCE_DIR}/platform/default/thread.cpp
     )
     list(APPEND MBGL_QT_LIBRARIES

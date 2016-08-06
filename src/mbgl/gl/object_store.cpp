@@ -71,7 +71,7 @@ void ObjectStore::performCleanup() {
     }
 
     if (!abandonedVAOs.empty()) {
-        MBGL_CHECK_ERROR(gl::DeleteVertexArrays(int(abandonedVAOs.size()), abandonedVAOs.data()));
+        gl::DeleteVertexArrays(int(abandonedVAOs.size()), abandonedVAOs.data());
         abandonedVAOs.clear();
     }
 }

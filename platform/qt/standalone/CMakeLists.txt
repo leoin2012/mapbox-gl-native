@@ -57,6 +57,8 @@ include_directories(
 
 add_definitions(
     -DQT_IMAGE_DECODERS
+    -DMBGL_USE_GLES2
+    -DGL_ES_VERSION_2_0
 )
 
 if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
